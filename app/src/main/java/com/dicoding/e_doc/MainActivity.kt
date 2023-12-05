@@ -21,6 +21,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.dicoding.e_doc.ui.screen.register.RegisterScreen
 import com.dicoding.e_doc.ui.theme.EdocTheme
 
 class MainActivity : ComponentActivity() {
@@ -33,40 +34,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    RegisterScreen()
                 }
             }
         }
     }
 }
 
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Column(modifier = Modifier.padding(8.dp), horizontalAlignment = Alignment.Start) {
-        Text(text = "Sign Up")
-        Text(text = "Selamat Datang")
-        Image(
-            painter = painterResource(R.drawable.selfie),
-            contentDescription = "Selife image",
-            modifier = Modifier.size(80.dp),
-        )
-        Text(text = "Email")
-        Text(text = "Password")
-        Text(text = "Konfirmasi Password")
-        Button(onClick = { /*TODO*/ }) {
-            Text(text = "Daftar")
-        }
-        Text(text = "Sudah Punya Akun?")
-
-    }
-
-
-}
-
 @Preview(showBackground = true)
 @Composable
-fun GreetingPreview() {
+fun Preview() {
     EdocTheme {
-        Greeting("Android")
+        RegisterScreen()
     }
 }

@@ -2,6 +2,7 @@ package com.dicoding.e_doc.ui.screen.login
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -22,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -33,70 +35,69 @@ fun LoginScreen() {
     Column(
         modifier = Modifier
             .padding(start = 32.dp, end = 32.dp)
-            .background(color = Color(0xFFFFFFFF)), horizontalAlignment = Alignment.Start
+            .background(color = Color(0xFFFFFFFF)), verticalArrangement = Arrangement.SpaceBetween
     ) {
-        Text(
-            text = "Login",
-            modifier = Modifier.padding(top = 64.dp),
-            style = TextStyle(
-                fontSize = 18.sp,
-                fontWeight = FontWeight(700),
-                color = Color(0xFF000000),
-            )
-        )
-        Text(
-            text = "Selamat Datang Kembali",
-            style = TextStyle(
-                fontSize = 14.sp,
-                fontWeight = FontWeight(400),
-                color = Color(0xFF5B5B5B),
-            )
-        )
-        Image(
-            painter = painterResource(R.drawable.selfie),
-            contentDescription = "Selife image",
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(170.dp)
-                .padding(top = 53.dp)
-                .size(80.dp),
-        )
-        Text(
-            text = "Email", modifier = Modifier.padding(top = 53.dp), style = TextStyle(
-                fontSize = 12.sp,
-                fontWeight = FontWeight(400),
-                color = Color(0xFF000000),
-            )
-        )
-        SimpleOutlinedTextFieldSample()
-        Text(
-            text = "Password", modifier = Modifier.padding(top = 18.dp), style = TextStyle(
-                fontSize = 12.sp,
-                fontWeight = FontWeight(400),
-                color = Color(0xFF000000),
-            )
-        )
-        SimpleOutlinedTextFieldSample()
-
-        FilledTonalButtons {}
-
-        Row(modifier = Modifier.padding(top = 12.dp)) {
+        Column(horizontalAlignment = Alignment.Start) {
             Text(
-                text = "Blm Punya Akun? ",
+                text = "Login",
+                modifier = Modifier.padding(top = 64.dp),
+                style = TextStyle(
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight(700),
+                    color = Color(0xFF000000),
+                )
+            )
+            Text(
+                text = "Selamat Datang Kembali",
                 style = TextStyle(
                     fontSize = 14.sp,
                     fontWeight = FontWeight(400),
                     color = Color(0xFF5B5B5B),
                 )
             )
+            Image(
+                painter = painterResource(R.drawable.selfie),
+                contentDescription = "Selife image",
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(170.dp)
+                    .padding(top = 53.dp)
+                    .size(80.dp),
+            )
             Text(
-                text = "Daftar",
+                text = "Email", modifier = Modifier.padding(top = 53.dp), style = TextStyle(
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFF000000),
+                )
+            )
+            SimpleOutlinedTextFieldSample()
+            Text(
+                text = "Password", modifier = Modifier.padding(top = 18.dp), style = TextStyle(
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight(400),
+                    color = Color(0xFF000000),
+                )
+            )
+            SimpleOutlinedTextFieldSample()
+
+            FilledTonalButtons {}
+        }
+
+        Row(
+            modifier = Modifier
+                .padding(bottom = 32.dp)
+                .fillMaxWidth(), horizontalArrangement = Arrangement.Center
+        ) {
+            Text(
+                text = "Belum Punya Akun? ",
                 style = TextStyle(
                     fontSize = 14.sp,
-                    fontWeight = FontWeight(700),
+                    fontWeight = FontWeight(400),
                     color = Color(0xFF5B5B5B),
                 )
             )
+            ClickableText(texts = "Daftar")
         }
 
 
@@ -122,13 +123,30 @@ fun SimpleOutlinedTextFieldSample() {
 
 @Composable
 fun FilledTonalButtons(onClick: () -> Unit) {
-    Button(onClick = { onClick() }, colors = ButtonDefaults.buttonColors(
-        containerColor = Color(0xFF3A94EC),
-        contentColor = Color.White),modifier = Modifier
-        .padding(top = 52.dp)
-        .fillMaxWidth()
-        .height(53.dp)
+    Button(
+        onClick = { onClick() }, colors = ButtonDefaults.buttonColors(
+            containerColor = Color(0xFF3A94EC),
+            contentColor = Color.White
+        ), modifier = Modifier
+            .padding(top = 52.dp)
+            .fillMaxWidth()
+            .height(53.dp)
     ) {
-        Text("Daftar")
+        Text("Masuk")
     }
+}
+
+
+@Composable
+fun ClickableText(texts: String) {
+    androidx.compose.foundation.text.ClickableText(
+        text = AnnotatedString(texts),
+        style = TextStyle(
+            fontSize = 14.sp,
+            fontWeight = FontWeight(700),
+            color = Color(0xFF5B5B5B),
+        ),
+        onClick = {
+        }
+    )
 }

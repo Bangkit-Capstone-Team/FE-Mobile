@@ -20,6 +20,7 @@ import com.dicoding.e_doc.R
 import com.dicoding.e_doc.ui.navigation.UserNavigationItem
 import com.dicoding.e_doc.ui.navigation.UserScreen
 import com.dicoding.e_doc.ui.screen.user.home.UserHomeScreen
+import com.dicoding.e_doc.ui.screen.user.list.UserListScreen
 import com.dicoding.e_doc.ui.screen.user.scan.UserScanScreen
 
 @Composable
@@ -36,13 +37,16 @@ fun UserMainScreen(
             modifier = Modifier.padding(innerPadding)
         ) {
             composable(UserScreen.Beranda.route) {
-                UserHomeScreen()
+                UserHomeScreen(navController)
             }
             composable(UserScreen.Scan.route) {
                 UserScanScreen()
             }
             composable(UserScreen.Profile.route) {
-                UserHomeScreen()
+                UserScanScreen()
+            }
+            composable(UserScreen.UserList.route) {
+                UserListScreen()
             }
 
         }

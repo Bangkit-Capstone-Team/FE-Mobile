@@ -24,6 +24,7 @@ val dummySimpleDocument = listOf(
     Document(R.drawable.d_tv, "tv klasik", "e-doc", 4),
     Document(R.drawable.d_keyboard, "magic keyboard", "apple", 5),
     Document(R.drawable.d_iphone, "iphone", "apple", 6),
+    Document(R.drawable.d_headphone, "headphone", "e-doc", 7),
 )
 
 val dummyLastDocument = dummyDocument.shuffled()

@@ -28,6 +28,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.compose.composable
 import com.dicoding.e_doc.R
 import com.dicoding.e_doc.data.model.dummyDocument
 import com.dicoding.e_doc.data.model.dummyLastDocument
@@ -37,9 +39,11 @@ import com.dicoding.e_doc.ui.components.DocumentRow
 import com.dicoding.e_doc.ui.components.DocumentSimpleRow
 import com.dicoding.e_doc.ui.components.SearchItem
 import com.dicoding.e_doc.ui.components.SectionTextItem
+import com.dicoding.e_doc.ui.navigation.UserScreen
+import com.dicoding.e_doc.ui.screen.user.list.UserListScreen
 
 @Composable
-fun UserHomeScreen() {
+fun UserHomeScreen(navController: NavController) {
     Column(
         modifier = Modifier
             .verticalScroll(rememberScrollState())
@@ -49,7 +53,10 @@ fun UserHomeScreen() {
             modifier = Modifier
                 .padding(start = 32.dp, end = 32.dp, top = 20.dp)
         ) {
-            Row(modifier = Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.SpaceBetween) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
                 Image(
                     painter = painterResource(id = R.drawable.xprofile),
                     contentDescription = "image description",
@@ -64,7 +71,8 @@ fun UserHomeScreen() {
                     contentScale = ContentScale.FillBounds,
                     modifier = Modifier
                         .width(40.dp)
-                        .height(40.dp).clickable {  }
+                        .height(40.dp)
+                        .clickable { }
                 )
             }
             SearchItem(modifier = Modifier.padding(top = 24.dp, bottom = 32.dp))
@@ -90,7 +98,9 @@ fun UserHomeScreen() {
                 modifier = Modifier
                     .padding(top = 24.dp)
                     .fillMaxWidth()
-                    .clickable { },
+                    .clickable {
+                        navController.navigate((UserScreen.UserList.route))
+                    },
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
@@ -102,7 +112,9 @@ fun UserHomeScreen() {
                 modifier = Modifier
                     .padding(top = 24.dp)
                     .fillMaxWidth()
-                    .clickable { },
+                    .clickable {
+                        navController.navigate((UserScreen.UserList.route))
+                    },
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
@@ -111,34 +123,5 @@ fun UserHomeScreen() {
             }
             DocumentSimpleRow(dummySimpleDocument)
         }
-    }
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun SimpleOutlinedTextFieldSample() {
-    var text by remember { mutableStateOf("") }
-
-    OutlinedTextField(
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(40.dp),
-        value = text,
-        onValueChange = { text = it },
-    )
-}
-
-@Composable
-fun FilledTonalButtons(onClick: () -> Unit) {
-    Button(
-        onClick = { onClick() }, colors = ButtonDefaults.buttonColors(
-            containerColor = Color(0xFF3A94EC),
-            contentColor = Color.White
-        ), modifier = Modifier
-            .padding(top = 52.dp)
-            .fillMaxWidth()
-            .height(53.dp)
-    ) {
-        Text("Daftar")
     }
 }

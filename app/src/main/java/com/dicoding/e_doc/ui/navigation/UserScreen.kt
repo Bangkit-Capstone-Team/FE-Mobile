@@ -4,4 +4,5 @@ sealed class UserScreen(val route: String) {
     object Beranda : UserScreen("beranda")
     object Scan : UserScreen("scan")
     object Profile : UserScreen("profile")
+    object UserList : UserScreen("user_list")
 }

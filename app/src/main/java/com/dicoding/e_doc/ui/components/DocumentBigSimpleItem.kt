@@ -15,6 +15,10 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.GridItemSpan
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
@@ -39,9 +43,9 @@ import com.dicoding.e_doc.data.model.Document
 import com.dicoding.e_doc.ui.theme.EdocTheme
 
 @Composable
-fun DocumentBigSimpleItem(document: Document, modifier: Modifier = Modifier) {
+fun DocumentBigSimpleItem(document: Document) {
     Card(
-        modifier = Modifier.width(140.dp),
+        modifier = Modifier.width(140.dp).padding(bottom = 8.dp),
         shape = RoundedCornerShape(8.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.background),
     ) {
@@ -101,6 +105,26 @@ fun DocumentSimpleRow(
         items(listDocument, key = {
             it.idDocument
         }) { document -> DocumentBigSimpleItem(document = document) }
+    }
+}
+
+@Composable
+fun DocumentSimpleGridRow(
+    listDocument: List<Document>,
+    modifier: Modifier = Modifier
+) {
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(2),
+        horizontalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = modifier
+    ) {
+        items(listDocument, key = {
+            it.idDocument
+        }) { document ->
+            DocumentBigSimpleItem(
+                document = document
+            )
+        }
     }
 }
 

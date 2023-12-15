@@ -23,6 +23,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.dicoding.e_doc.ui.screen.login.LoginScreen
 import com.dicoding.e_doc.ui.screen.register.RegisterScreen
+import com.dicoding.e_doc.ui.screen.user.home.UserHomeScreen
 import com.dicoding.e_doc.ui.theme.EdocTheme
 
 class MainActivity : ComponentActivity() {
@@ -35,7 +36,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    LoginScreen()
+                    UserHomeScreen()
                 }
             }
         }

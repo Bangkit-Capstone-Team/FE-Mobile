@@ -47,6 +47,6 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Preview() {
     EdocTheme {
-        RegisterScreen()
+        UserHomeScreen()
     }
 }

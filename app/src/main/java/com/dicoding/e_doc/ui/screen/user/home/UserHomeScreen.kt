@@ -2,25 +2,20 @@ package com.dicoding.e_doc.ui.screen.user.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Search
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.SearchBar
-import androidx.compose.material3.SearchBarDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,38 +27,91 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.AnnotatedString
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.dicoding.e_doc.R
+import com.dicoding.e_doc.data.model.dummyDocument
+import com.dicoding.e_doc.data.model.dummyLastDocument
+import com.dicoding.e_doc.data.model.dummySimpleDocument
+import com.dicoding.e_doc.ui.components.BannerRow
+import com.dicoding.e_doc.ui.components.DocumentRow
+import com.dicoding.e_doc.ui.components.DocumentSimpleRow
+import com.dicoding.e_doc.ui.components.SearchItem
+import com.dicoding.e_doc.ui.components.SectionTextItem
 
 @Composable
 fun UserHomeScreen() {
     Column(
         modifier = Modifier
-            .padding(start = 32.dp, end = 32.dp, top = 20.dp)
+            .verticalScroll(rememberScrollState())
             .background(color = Color(0xFFFFFFFF))
     ) {
-
-        Image(
-            painter = painterResource(id = R.drawable.xprofile),
-            contentDescription = "image description",
-            contentScale = ContentScale.FillBounds,
+        Column(
             modifier = Modifier
-                .width(40.dp)
-                .height(40.dp)
-        )
-        Search(modifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 24.dp))
-
-
+                .padding(start = 32.dp, end = 32.dp, top = 20.dp)
+        ) {
+            Row(modifier = Modifier.fillMaxWidth(),horizontalArrangement = Arrangement.SpaceBetween) {
+                Image(
+                    painter = painterResource(id = R.drawable.xprofile),
+                    contentDescription = "image description",
+                    contentScale = ContentScale.Fit,
+                    modifier = Modifier
+                        .width(40.dp)
+                        .height(40.dp)
+                )
+                Image(
+                    painter = painterResource(id = R.drawable.outline_camera_alt_24),
+                    contentDescription = "image description",
+                    contentScale = ContentScale.FillBounds,
+                    modifier = Modifier
+                        .width(40.dp)
+                        .height(40.dp).clickable {  }
+                )
+            }
+            SearchItem(modifier = Modifier.padding(top = 24.dp, bottom = 32.dp))
+        }
+        BannerRow()
+        Column(
+            modifier = Modifier
+                .padding(start = 32.dp, end = 32.dp)
+        ) {
+            Row(
+                modifier = Modifier
+                    .padding(top = 24.dp)
+                    .fillMaxWidth()
+                    .clickable { },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                SectionTextItem(tile = "Continue Watching")
+                SectionTextItem(tile = ">")
+            }
+            DocumentRow(dummyDocument)
+            Row(
+                modifier = Modifier
+                    .padding(top = 24.dp)
+                    .fillMaxWidth()
+                    .clickable { },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                SectionTextItem(tile = "New Document")
+                SectionTextItem(tile = ">")
+            }
+            DocumentSimpleRow(dummySimpleDocument)
+            Row(
+                modifier = Modifier
+                    .padding(top = 24.dp)
+                    .fillMaxWidth()
+                    .clickable { },
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                SectionTextItem(tile = "Popular Document")
+                SectionTextItem(tile = ">")
+            }
+            DocumentSimpleRow(dummySimpleDocument)
+        }
     }
-
-
 }
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -92,50 +140,5 @@ fun FilledTonalButtons(onClick: () -> Unit) {
             .height(53.dp)
     ) {
         Text("Daftar")
-    }
-}
-
-@Composable
-fun ClickableText(texts: String) {
-    androidx.compose.foundation.text.ClickableText(
-        text = AnnotatedString(texts),
-        style = TextStyle(
-            fontSize = 14.sp,
-            fontWeight = FontWeight(700),
-            color = Color(0xFF5B5B5B),
-        ),
-        onClick = {
-        }
-    )
-}
-
-@OptIn(ExperimentalMaterial3Api::class)
-@Composable
-fun Search(modifier: Modifier = Modifier) {
-    SearchBar(
-        query = "",
-        onQueryChange = {},
-        onSearch = {},
-        active = false,
-        onActiveChange = {},
-        leadingIcon = {
-            Icon(
-                imageVector = Icons.Default.Search,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.onSurfaceVariant
-            )
-        },
-        placeholder = {
-            Text("Search")
-        },
-        shape = MaterialTheme.shapes.large,
-        colors = SearchBarDefaults.colors(
-            containerColor = MaterialTheme.colorScheme.background
-        ),
-        modifier = modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-            .heightIn(min = 48.dp)
-    ) {
     }
 }

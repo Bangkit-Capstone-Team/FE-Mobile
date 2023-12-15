@@ -9,10 +9,10 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun SectionTextItem(tile: String, modifier: Modifier = Modifier) {
+fun SectionTextItem(tile: String, modifier: Modifier = Modifier,fontWeight: FontWeight) {
     Text(
         text = tile,
-        style = MaterialTheme.typography.bodyLarge.copy(fontWeight = FontWeight.Bold),
-        modifier = modifier.padding(horizontal = 16.dp, vertical = 8.dp)
+        style = MaterialTheme.typography.bodyLarge.copy(fontWeight = fontWeight),
+        modifier = modifier.padding(horizontal = 16.dp)
     )
 }

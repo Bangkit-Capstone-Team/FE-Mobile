@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.compose.composable
@@ -90,8 +91,8 @@ fun UserHomeScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                SectionTextItem(tile = "Continue Watching")
-                SectionTextItem(tile = ">")
+                SectionTextItem(tile = "Continue Watching", modifier = Modifier.padding(vertical = 12.dp),FontWeight.Bold)
+                SectionTextItem(tile = ">", modifier = Modifier.padding(vertical = 12.dp),FontWeight.Bold)
             }
             DocumentRow(dummyDocument)
             Row(
@@ -104,8 +105,9 @@ fun UserHomeScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                SectionTextItem(tile = "New Document")
-                SectionTextItem(tile = ">")
+                SectionTextItem(tile = "New Document", modifier = Modifier.padding(vertical = 12.dp),
+                    FontWeight.Bold)
+                SectionTextItem(tile = ">", modifier = Modifier.padding(vertical = 12.dp),FontWeight.Bold)
             }
             DocumentSimpleRow(dummySimpleDocument)
             Row(
@@ -118,8 +120,8 @@ fun UserHomeScreen(navController: NavController) {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                SectionTextItem(tile = "Popular Document")
-                SectionTextItem(tile = ">")
+                SectionTextItem(tile = "Popular Document", modifier = Modifier.padding(vertical = 12.dp),FontWeight.Bold)
+                SectionTextItem(tile = ">", modifier = Modifier.padding(vertical = 12.dp),FontWeight.Bold)
             }
             DocumentSimpleRow(dummySimpleDocument)
         }

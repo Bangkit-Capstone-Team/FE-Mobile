@@ -19,6 +19,7 @@ import androidx.navigation.compose.rememberNavController
 import com.dicoding.e_doc.R
 import com.dicoding.e_doc.ui.navigation.UserNavigationItem
 import com.dicoding.e_doc.ui.navigation.UserScreen
+import com.dicoding.e_doc.ui.screen.profile.ProfileScreen
 import com.dicoding.e_doc.ui.screen.user.home.UserHomeScreen
 import com.dicoding.e_doc.ui.screen.user.list.UserListScreen
 import com.dicoding.e_doc.ui.screen.user.scan.UserScanScreen
@@ -28,8 +29,14 @@ fun UserMainScreen(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    val currentRoute = navBackStackEntry?.destination?.route
     Scaffold(
-        bottomBar = { BottomBar(navController) }, modifier = modifier
+        bottomBar = {
+            if (currentRoute != UserScreen.UserList.route) {
+                BottomBar(navController)
+            }
+        }, modifier = modifier
     ) { innerPadding ->
         NavHost(
             navController = navController,
@@ -43,7 +50,7 @@ fun UserMainScreen(
                 UserScanScreen()
             }
             composable(UserScreen.Profile.route) {
-                UserScanScreen()
+                ProfileScreen()
             }
             composable(UserScreen.UserList.route) {
                 UserListScreen()

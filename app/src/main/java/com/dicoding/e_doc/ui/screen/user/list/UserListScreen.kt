@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import com.dicoding.e_doc.R
 import com.dicoding.e_doc.data.model.dummySimpleDocument
@@ -52,8 +53,13 @@ fun UserListScreen() {
                         .clickable { })
             }
             SearchItem(modifier = Modifier.padding(top = 24.dp, bottom = 32.dp))
-            SectionTextItem(tile = "Category")
-            ButtonSimpleRow(onClick = {}, bgColor = Color(0xffFFEC86), textColor = Color.Black)
+            SectionTextItem(tile = "Category", fontWeight = FontWeight.Bold)
+            ButtonSimpleRow(
+                onClick = {},
+                bgColor = Color(0xffFFEC86),
+                textColor = Color.Black,
+                btnModifier = Modifier.height(38.dp)
+            )
             DocumentSimpleGridRow(
                 listDocument = dummySimpleDocument,
                 modifier = Modifier.padding(top = 24.dp)
